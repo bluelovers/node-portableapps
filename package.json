@@ -9,9 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "camelcase": "^4.1.0",
     "meow": "^3.7.0",
-    "ucfirst": "^1.0.0",
+    "ejs": "*",
+    "bluebird": "*",
+    "globby": "*",
+    "fs-extra": "*",
+    "winattr": "*",
     "uppercamelcase": "^3.0.0"
   }
 }
