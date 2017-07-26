@@ -105,7 +105,6 @@ module.exports.build = async (options, data) =>
 
 	console.log([source, target, process.cwd()]);
 
-
 	console.log('start...');
 
 	return await globby(['**'], {
@@ -173,6 +172,14 @@ module.exports.build = async (options, data) =>
 							await fs.writeFile(file, tpl_render);
 						}
 					}
+				}
+
+				let basename = path.basename(file);
+
+				if (basename.match(/^ShedkoFolderico.+\.ico$/) || basename == 'desktop.ini')
+				{
+					attr.hidden = true;
+					attr.system = true;
 				}
 
 				await winattr.set(file, attr);
