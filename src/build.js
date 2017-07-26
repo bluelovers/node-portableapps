@@ -11,7 +11,7 @@ const globby = require('globby');
 const path = require('path');
 const filter = require('./filter');
 
-const upperCamelCase = require('uppercamelcase');
+const upperCamelCase = require('./uppercamelcase');
 
 module.exports.config = function (input = {}, extend = {})
 {
@@ -105,6 +105,11 @@ module.exports.build = async (options, data) =>
 
 	console.log([source, target, process.cwd()]);
 
+	if (fs.existsSync(target))
+	{
+		throw `target already exists`;
+	}
+
 	console.log('start...');
 
 	return await globby(['**'], {
@@ -120,8 +125,8 @@ module.exports.build = async (options, data) =>
 				return 1;
 			}
 
-			await fs.emptyDir(target);
-			console.warn(`[clear] ${target}`);
+			//await fs.emptyDir(target);
+			//console.warn(`[clear] ${target}`);
 
 			let fs_options = {
 				preserveTimestamps: true,
