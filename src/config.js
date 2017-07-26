@@ -4,7 +4,7 @@
 
 'use strict';
 
-const upperCamelCase = require('uppercamelcase');
+const upperCamelCase = require('./uppercamelcase');
 const filter = require('./filter');
 
 module.exports.config = function (input = {}, extend = {})

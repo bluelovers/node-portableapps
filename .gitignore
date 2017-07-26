@@ -2,3 +2,9 @@
 /test/temp/
 /test/temp
 /*.iml
+!/tpl/*/desktop.ini
+!/tpl/default/desktop.ini
+!/tpl/default/Data/desktop.ini
+!/tpl/default/App/desktop.ini
+!/tpl/default/App/DefaultData/desktop.ini
+!/tpl/default/App/AppInfo/desktop.ini
