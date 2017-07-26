@@ -14,7 +14,7 @@ fs.rename = util.promisify(fs.rename);
 
 module.exports.fs = fs;
 
-const fswin = require('fswin');
+//const fswin = require('fswin');
 const winattr = require('winattr');
 
 winattr.get = util.promisify(winattr.get);
