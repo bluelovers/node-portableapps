@@ -1,0 +1,17 @@
+{
+  "name": "portableapps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "camelcase": "^4.1.0",
+    "meow": "^3.7.0",
+    "ucfirst": "^1.0.0",
+    "uppercamelcase": "^3.0.0"
+  }
+}
