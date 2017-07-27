@@ -64,7 +64,9 @@ module.exports.options = function (options = {}, data = {})
 			options.target_dir = path.join(options.cwd, options.target_dir);
 		}
 
-		if (options.target_dir.indexOf(options.cwd_base) != -1 || options.target_dir.indexOf(path.join(__dirname, '..')) != -1)
+		if (options.target_dir.indexOf(options.cwd_base) != -1 || options.target_dir.indexOf(path.join(__dirname,
+				'..'
+			)) != -1)
 		{
 			options.target_dir = null;
 		}
@@ -107,7 +109,15 @@ module.exports.build = async (options, data) =>
 
 	if (fs.existsSync(target))
 	{
-		throw `target already exists`;
+		target = await fs.realpath(target);
+
+		if (target.indexOf(path.join(__dirname, '../test/temp')) != 0)
+		{
+			throw `target already exists`;
+		}
+
+		await fs.emptyDir(target);
+		console.warn(`[clear] ${target}`);
 	}
 
 	console.log('start...');
@@ -148,17 +158,28 @@ module.exports.build = async (options, data) =>
 				if (stat.isFile())
 				{
 					let basename = path.basename(filename);
-					let basename_new = `${data.app.name_id}Portable.ini`;
 
-					if (basename == 'AppNamePortable.ini' && basename != basename_new)
+					if (basename.match(/^AppName/) && data.app.name_id != 'AppName')
 					{
-						let file_new = path.join(target, path.dirname(filename), basename_new);
-						//console.log([basename, basename_new, file]);
+						let file_new = null;
 
-						await fs.move(file, file_new, fs_options);
-						console.info(`[rename] ${file} => ${file_new}`);
+						switch (basename)
+						{
+							case 'AppNamePortable.ini':
+							case 'AppName.exe':
+							case 'AppName.nsi':
+							case 'AppNamePortable.exe':
+								file_new = path.join(target, path.dirname(filename), `${basename.replace(/^AppName/, data.app.name_id)}`);
+								break;
+						}
 
-						file = file_new;
+						if (file_new)
+						{
+							await fs.move(file, file_new, fs_options);
+							console.info(`[rename] ${file} => ${file_new}`);
+
+							file = file_new;
+						}
 					}
 
 					if (['ini', 'html', 'htm', 'txt'].includes(ext))
@@ -200,5 +221,5 @@ module.exports.build = async (options, data) =>
 			console.error(e);
 			console.timeEnd(data.pkg.name);
 		})
-	;
+		;
 };
