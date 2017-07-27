@@ -1,3 +1,6 @@
+DEVELOPER: Replace the three occurrences of **AppID**Portable in this file
+with the App ID of your app and then remove this first sentence.
+
 The base application's source code is available from the portable app's
 homepage listed in the help.html file (if applicable).
 
