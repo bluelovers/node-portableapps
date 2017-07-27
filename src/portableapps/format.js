@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-	type: 'PortableApps.comFormat',
+	//type: 'PortableApps.comFormat',
 	type: 'PortableAppsFormat',
 	version: 3.5,
 };
