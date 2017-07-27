@@ -1,13 +1,12 @@
 {
-  "name": "portableapps",
+  "name": "node-portableapps",
   "version": "1.0.0",
-  "description": "",
   "main": "src/build.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "portableapps": "index.js"
+    "pa-make": "index.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +18,18 @@
     "fs-extra": "*",
     "winattr": "*",
     "uppercamelcase": "^3.0.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/node-portableapps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bluelovers/node-portableapps/issues"
+  },
+  "homepage": "https://github.com/bluelovers/node-portableapps#readme",
+  "description": ""
 }
